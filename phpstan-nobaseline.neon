@@ -1,0 +1,17 @@
+# Configuração de auditoria / verificação total
+# Larastan / PHPStan configuration (no baseline)
+includes:
+    - vendor/nunomaduro/larastan/extension.neon
+    - phpstan-tests.neon
+
+parameters:
+    level: 6
+    paths:
+        - app
+        - tests
+    tmpDir: storage/framework/cache/phpstan
+    bootstrapFiles:
+        - bootstrap/app.php
+    reportUnmatchedIgnoredErrors: true
+    universalObjectCratesClasses:
+        - Illuminate\\Support\\Fluent

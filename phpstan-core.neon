@@ -1,0 +1,45 @@
+# ------------------------------------------------------------
+# PHPStan - Configuração do Core da aplicação
+# ------------------------------------------------------------
+#
+# RESPONSABILIDADE
+# Este arquivo define as regras mais rígidas de análise estática
+# aplicadas exclusivamente ao Core do SaaS.
+#
+# O Core contém código crítico e reutilizável, como:
+# - Autenticação
+# - ACL / Permissões
+# - Billing
+# - Tenancy
+# - Notificações
+# - Auditoria
+#
+# COMO USAR
+# - Executado em conjunto com a configuração principal
+# - Usado no CI para garantir qualidade máxima do Core
+#
+# NÍVEL DE RIGOR
+# - Alto (nível 6 ou superior)
+# - Tipagem explícita
+# - Retornos bem definidos
+# - Zero tolerância para código ambíguo
+#
+# PONTOS DE ATENÇÃO
+# - Código do Core NÃO deve usar baseline
+# - Erros aqui devem ser corrigidos no código, nunca ignorados
+# - Alterações no Core exigem mais cuidado e revisão
+#
+# IMPORTANTE
+# O Core deve ser estável, previsível e seguro, pois ele será reutilizado
+# em múltiplos SaaS derivados deste projeto.
+# ------------------------------------------------------------
+
+
+# phpstan-core.neon
+parameters:
+    level: 6
+
+    paths:
+    #    - app/Core
+
+    reportUnmatchedIgnoredErrors: true

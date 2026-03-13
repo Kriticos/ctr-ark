@@ -1,0 +1,31 @@
+#!/bin/bash
+# Pre-commit hook - Pint obrigatório, PHPStan informativo
+
+echo "🔍 Running Pint (Code Formatter)..."
+
+if ! vendor/bin/pint --test > /dev/null 2>&1; then
+    echo "❌ Pint found formatting issues. Running auto-fix..."
+    vendor/bin/pint
+    echo ""
+    echo "⚠️  Files were formatted. Please review and stage them again:"
+    echo "   git add ."
+    echo "   git commit"
+    exit 1
+fi
+
+echo "✅ Pint passed"
+
+echo ""
+echo "🔎 Running PHPStan (informational)..."
+
+if ! vendor/bin/phpstan analyse --no-progress; then
+    echo ""
+    echo "⚠️  PHPStan found issues."
+    echo "ℹ️  This does NOT block the commit during the PHPStan setup phase."
+    echo "👉 Please address these issues before merging the PR."
+else
+    echo "✅ PHPStan passed"
+fi
+
+echo ""
+echo "✨ Pre-commit checks finished"

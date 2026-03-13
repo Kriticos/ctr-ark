@@ -1,0 +1,44 @@
+# ------------------------------------------------------------
+# PHPStan - Configuração padrão do projeto
+# ------------------------------------------------------------
+# RESPONSABILIDADE
+# Análise estática padrão para o dia a dia de desenvolvimento.
+#
+# COMO USAR
+# - Desenvolvimento local
+# - Commits
+# - Análises rápidas
+#
+# NÍVEL DE RIGOR
+# - Moderado (nível 4)
+#
+# IMPORTANTE
+# O Core (app/Core) é analisado separadamente com regras mais rígidas
+# definidas em phpstan-core.neon.
+# ------------------------------------------------------------
+
+includes:
+    - vendor/nunomaduro/larastan/extension.neon
+    - phpstan-tests.neon
+    - phpstan-core.neon
+
+parameters:
+    level: 4
+
+    paths:
+        - app
+        - tests
+
+    excludePaths:
+        analyse:
+            - app/Core/*
+
+    tmpDir: storage/framework/cache/phpstan
+
+    bootstrapFiles:
+        - bootstrap/app.php
+
+    reportUnmatchedIgnoredErrors: false
+
+    universalObjectCratesClasses:
+        - Illuminate\Support\Fluent

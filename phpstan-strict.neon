@@ -1,0 +1,37 @@
+# ------------------------------------------------------------
+# PHPStan - Configuração estrita (auditoria)
+# ------------------------------------------------------------
+#
+# RESPONSABILIDADE
+# Esta configuração executa uma análise mais rigorosa do projeto
+# sem utilizar baseline. Ela serve como ferramenta de auditoria
+# e detecção de dívida técnica.
+#
+# COMO USAR
+# - Executar manualmente quando necessário
+# - Utilizar em pipelines de CI mais rigorosos
+# - Usar antes de releases importantes
+#
+# NÍVEL DE RIGOR
+# - Alto (nível 6 ou superior)
+# - Sem baseline
+# - Todos os avisos devem ser tratados como problemas reais
+#
+# PONTOS DE ATENÇÃO
+# - NÃO usar este arquivo no pre-commit
+# - Ele pode falhar por código legado ou áreas ainda em evolução
+# - Serve para diagnóstico, não para travar desenvolvimento diário
+#
+# IMPORTANTE
+# Se este arquivo começar a falhar constantemente, é um sinal de que
+# a dívida técnica está crescendo e precisa ser tratada.
+# ------------------------------------------------------------
+
+
+# PHPStan strict audit (no baseline)
+includes:
+    - phpstan.neon
+
+parameters:
+    level: 6
+    reportUnmatchedIgnoredErrors: true

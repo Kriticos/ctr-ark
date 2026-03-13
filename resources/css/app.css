@@ -1,0 +1,274 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux/**/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Markdown renderer styles inspired by editor previews like VS Code */
+.markdown-prose {
+    --md-text: rgb(31 41 55);
+    --md-heading: rgb(17 24 39);
+    --md-muted: rgb(107 114 128);
+    --md-link: rgb(37 99 235);
+    --md-rule: rgb(229 231 235);
+    --md-quote-border: rgb(59 130 246);
+    --md-quote-bg: rgb(248 250 252);
+    --md-inline-code-bg: rgb(241 245 249);
+    --md-inline-code-text: rgb(190 24 93);
+    --md-pre-bg: rgb(15 23 42);
+    --md-pre-text: rgb(226 232 240);
+    --md-pre-border: rgb(30 41 59);
+    --md-table-head-bg: rgb(248 250 252);
+    --md-table-stripe: rgb(249 250 251);
+    color: var(--md-text);
+    font-size: 1rem;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+}
+
+.markdown-prose > :first-child {
+    margin-top: 0;
+}
+
+.markdown-prose > :last-child {
+    margin-bottom: 0;
+}
+
+.markdown-prose :where(h1, h2, h3, h4, h5, h6) {
+    color: var(--md-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    scroll-margin-top: 6rem;
+}
+
+.markdown-prose :where(h1) {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid var(--md-rule);
+}
+
+.markdown-prose :where(h2) {
+    font-size: 1.5rem;
+    margin-top: 2.25rem;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--md-rule);
+}
+
+.markdown-prose :where(h3) {
+    font-size: 1.25rem;
+    margin-top: 1.8rem;
+    margin-bottom: 0.75rem;
+}
+
+.markdown-prose :where(h4) {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.65rem;
+}
+
+.markdown-prose :where(h5, h6) {
+    font-size: 1rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.55rem;
+}
+
+.markdown-prose :where(p, ul, ol, blockquote, pre, table, hr) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.markdown-prose :where(ul, ol) {
+    padding-left: 1.5rem;
+}
+
+.markdown-prose :where(li + li) {
+    margin-top: 0.3rem;
+}
+
+.markdown-prose :where(ul ul, ul ol, ol ul, ol ol) {
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.markdown-prose :where(li > p) {
+    margin-top: 0.35rem;
+    margin-bottom: 0.35rem;
+}
+
+.markdown-prose :where(a) {
+    color: var(--md-link);
+    text-decoration: none;
+}
+
+.markdown-prose :where(a:hover) {
+    text-decoration: underline;
+}
+
+.markdown-prose :where(strong) {
+    color: var(--md-heading);
+    font-weight: 700;
+}
+
+.markdown-prose :where(em) {
+    font-style: italic;
+}
+
+.markdown-prose :where(hr) {
+    border: 0;
+    border-top: 1px solid var(--md-rule);
+}
+
+.markdown-prose :where(code) {
+    background: var(--md-inline-code-bg);
+    color: var(--md-inline-code-text);
+    border-radius: 0.35rem;
+    padding: 0.13rem 0.35rem;
+    font-size: 0.92em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+.markdown-prose :where(pre) {
+    background: var(--md-pre-bg);
+    color: var(--md-pre-text);
+    border: 1px solid var(--md-pre-border);
+    border-radius: 0.75rem;
+    padding: 1rem 1.1rem;
+    overflow-x: auto;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.02);
+}
+
+.markdown-prose :where(pre code) {
+    display: block;
+    background: transparent;
+    color: inherit;
+    border-radius: 0;
+    padding: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.markdown-prose.markdown-prose--plain-inline-code :where(:not(pre) > code) {
+    background: transparent;
+    color: inherit;
+    border-radius: 0;
+    padding: 0;
+}
+
+.markdown-prose.markdown-prose--reader :where(pre) {
+    background: linear-gradient(180deg, rgb(17 24 39), rgb(15 23 42));
+}
+
+.markdown-prose.markdown-prose--reader :where(pre, pre *)::selection {
+    background: transparent;
+    color: inherit;
+}
+
+.markdown-prose :where(blockquote) {
+    color: var(--md-muted);
+    border-left: 4px solid var(--md-quote-border);
+    background: var(--md-quote-bg);
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 0.85rem 1rem;
+}
+
+.markdown-prose :where(blockquote > :first-child) {
+    margin-top: 0;
+}
+
+.markdown-prose :where(blockquote > :last-child) {
+    margin-bottom: 0;
+}
+
+.markdown-prose :where(table) {
+    width: 100%;
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+}
+
+.markdown-prose :where(th, td) {
+    border: 1px solid var(--md-rule);
+    padding: 0.65rem 0.85rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+.markdown-prose :where(thead th) {
+    background: var(--md-table-head-bg);
+    color: var(--md-heading);
+    font-weight: 600;
+}
+
+.markdown-prose :where(tbody tr:nth-child(even)) {
+    background: var(--md-table-stripe);
+}
+
+.markdown-prose :where(img) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    margin: 1.25rem auto;
+}
+
+.markdown-prose :where(kbd) {
+    display: inline-block;
+    min-width: 1.75em;
+    padding: 0.1rem 0.4rem;
+    border: 1px solid var(--md-rule);
+    border-bottom-width: 2px;
+    border-radius: 0.35rem;
+    background: rgb(255 255 255 / 0.85);
+    color: var(--md-heading);
+    font-size: 0.85em;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.dark .markdown-prose {
+    --md-text: rgb(212 212 212);
+    --md-heading: rgb(255 255 255);
+    --md-muted: rgb(156 163 175);
+    --md-link: rgb(96 165 250);
+    --md-rule: rgb(55 65 81);
+    --md-quote-border: rgb(96 165 250);
+    --md-quote-bg: rgb(17 24 39);
+    --md-inline-code-bg: rgb(31 41 55);
+    --md-inline-code-text: rgb(244 114 182);
+    --md-pre-bg: rgb(15 23 42);
+    --md-pre-text: rgb(226 232 240);
+    --md-pre-border: rgb(51 65 85);
+    --md-table-head-bg: rgb(17 24 39);
+    --md-table-stripe: rgb(15 23 42);
+}
+
+.dark .markdown-prose.markdown-prose--plain-inline-code :where(:not(pre) > code) {
+    background: transparent;
+    color: inherit;
+}
+
+.dark .markdown-prose.markdown-prose--reader :where(pre code) {
+    background: transparent;
+    color: inherit;
+    border-radius: 0;
+    padding: 0;
+}
+
+.dark .markdown-prose.markdown-prose--reader :where(pre, pre *)::selection {
+    background: transparent;
+    color: inherit;
+}

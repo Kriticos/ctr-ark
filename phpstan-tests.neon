@@ -1,0 +1,51 @@
+# ------------------------------------------------------------
+# PHPStan - Configuração para arquivos de teste
+# ------------------------------------------------------------
+#
+# RESPONSABILIDADE
+# Esta configuração é dedicada exclusivamente à análise de testes.
+# O objetivo aqui é garantir sanidade básica sem transformar testes
+# em um problema de tipagem excessiva.
+#
+# COMO USAR
+# - Aplicado apenas sobre a pasta tests/
+# - Usado durante o desenvolvimento e no CI
+#
+# NÍVEL DE RIGOR
+# - Baixo a moderado (nível 3)
+# - Suficiente para capturar erros óbvios
+# - Flexível com helpers do Laravel, Pest e Eloquent dinâmico
+#
+# PONTOS DE ATENÇÃO
+# - Testes NÃO precisam de tipagem perfeita
+# - Arrays soltos, helpers e propriedades dinâmicas são aceitáveis
+# - Não usar baseline para testes
+#
+# IMPORTANTE
+# Testes existem para proteger comportamento e permitir refactor seguro.
+# Eles não devem travar evolução por limitações da análise estática.
+# ------------------------------------------------------------
+
+
+# PHPStan configuration for test files
+parameters:
+    level: 3
+
+    paths:
+        - tests
+
+    treatPhpDocTypesAsCertain: false
+
+    ignoreErrors:
+        # Helpers de teste do Laravel
+        - '#Call to an undefined method (PHPUnit\\Framework\\TestCase|Illuminate\\Foundation\\Testing\\TestCase)::(get|post|put|patch|delete|head|options)\(\)#'
+
+        # Pest globals
+        - '#Unable to resolve the template type.*(Pest|expect)#'
+        - '#Undefined variable: \$this#'
+
+        # Eloquent dinâmico
+        - '#Access to an undefined property.*Illuminate\\Database\\Eloquent\\(Model|Relations\\Pivot)::\$#'
+
+        # Helpers de teste sem return type
+        - '#Function.*has no return type specified#'
